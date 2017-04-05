@@ -7,9 +7,18 @@ cached_contact_data = {}
 def search(query):
     contact_data = get_contact_data()
     if contact_data and query:
-        return json.dumps(contact_data)
+        return json.dumps(search_by_name(query, contact_data))
     else:
         return ''
+
+
+def search_by_name(query, contact_data):
+    result = []
+    for contact in contact_data:
+        if query in contact['name']:
+            result.append(contact)
+    return result
+
 
 def get_contact_data():
     global cached_contact_data
