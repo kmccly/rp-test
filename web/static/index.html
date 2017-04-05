@@ -86,6 +86,7 @@
         searchUrl = "/search/?q=" + searchValue;
         $.ajax( { url: searchUrl })
         .done( function(data){
+            console.log(data);
             ajaxShowSearchResults(data);
         })
         .fail(function() {

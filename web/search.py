@@ -1,22 +1,32 @@
-contact_data = ''
+import json
 
-def search( query ):
+
+cached_contact_data = {}
+
+
+def search(query):
     contact_data = get_contact_data()
     if contact_data and query:
-        return contact_data
+        return json.dumps(contact_data)
     else:
         return ''
 
-
 def get_contact_data():
-    global contact_data
-    if not contact_data:
-        contact_data = get_mock_result()
+    global cached_contact_data
+    if not cached_contact_data:
+        cached_contact_data = load_contact_data()
+    contact_data = cached_contact_data
+    return contact_data
+
+
+def load_contact_data():
+    contact_data = {}
+    with open('data.json') as json_data:
+        contact_data = json.load(json_data)
     return contact_data
 
 
 def get_mock_result():
-    print('loading data...')
     return """
         [
         {
