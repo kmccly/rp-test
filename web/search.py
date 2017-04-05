@@ -2,7 +2,6 @@ import json
 
 
 cached_contact_data = {}
-cached_contact_data_as_text = []
 
 
 def search(query):
