@@ -1,11 +1,22 @@
+contact_data = ''
+
 def search( query ):
-    if query:
-        return get_mock_result()
+    contact_data = get_contact_data()
+    if contact_data and query:
+        return contact_data
     else:
         return ''
 
 
+def get_contact_data():
+    global contact_data
+    if not contact_data:
+        contact_data = get_mock_result()
+    return contact_data
+
+
 def get_mock_result():
+    print('loading data...')
     return """
         [
         {
