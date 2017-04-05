@@ -2,12 +2,13 @@ import json
 
 
 cached_contact_data = {}
+cached_contact_data_as_text = []
 
 
 def search(query):
     contact_data = get_contact_data()
     if contact_data and query:
-        return json.dumps(search_by_name(query, contact_data))
+        return json.dumps(search_by_all_fields(query, contact_data))
     else:
         return ''
 
@@ -21,12 +22,24 @@ def search_by_name(query, contact_data):
 
 
 def search_by_all_fields(query, contact_data):
+    query = query.lower()
     result = []
     for contact in contact_data:
-        if query in contact['name']\
-                or query in contact['city']:
+        if contact_matches_query(query, contact):
             result.append(contact)
     return result
+
+
+def contact_matches_query(query, contact):
+    for val in contact:
+        if isinstance(contact[val], list):
+            for subval in contact[val]:
+                if query in subval.lower():
+                    return True
+        else:
+            if query in contact[val].lower():
+                return True
+    return False
 
 
 def get_contact_data():

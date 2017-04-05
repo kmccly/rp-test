@@ -258,7 +258,7 @@ class TestSearch(TestCase):
                 "email": "dolor@adipiscingelitEtiam.org"
             },
             {
-                "city": "London",
+                "city": "London City",
                 "name": "Nyssa Hammond",
                 "country": "Mozambique",
                 "company": "Dui Nec Tempus Inc.",
@@ -269,5 +269,5 @@ class TestSearch(TestCase):
                 "email": "dolor@adipiscingelitEtiam.org"
             }
         ]
-        result = search.search_by_all_fields('London', contact_data)
+        result = search.search_by_all_fields('London City', contact_data)
         assert len(result) > 0 and result[0]["name"] == "Nyssa Hammond"
