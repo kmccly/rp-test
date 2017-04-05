@@ -5,6 +5,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
+
+    <!-- TODO: move this into a seperate style.css file -->
     <style>
       html, body{
         margin:0;
@@ -42,16 +44,17 @@
       }
 
     </style>
+
+    <!-- TODO: move the .js scripts below into a app.js file -->
     <script>
+      /* Document event functions used to pipe in the client and rendering classes */
       function search(){
         searchValue = $('#searchText').val();
-        showSearchResults(
-          getSesrchResults(searchValue)
-        );
+        ajaxGetSearchResults(searchValue);
         return false;
       }
 
-      function getSesrchResults(searchValue){
+      function getSearchResults(searchValue){
         searchResults = "No results.<br>Type part of a name or email in the text field above and click search to find matching contacts.";
         if(searchValue != ""){
           searchResults = "Results for: '" + searchValue + "'<br>";
@@ -61,6 +64,35 @@
 
       function showSearchResults(searchResults){
         $('#searchResults').html(searchResults);
+      }
+
+      function ajaxGetSearchResults(searchValue){
+        ajaxShowSearchingMessage();
+        $.get( "/search/?q=" + searchValue, function( data ) {
+            ajaxShowSearchResults(data)
+        }).fail(function() {
+            ajaxShowError();
+        });
+      }
+
+      function ajaxShowSearchingMessage(){
+        searchResults = "Searching...<br><br>Type part of a name or email in the text field above and click search to find matching contacts.";
+        showSearchResults(searchResults);
+      }
+
+      function ajaxShowError(){
+        searchResults = "Connection error! Please try again.<br><br>Type part of a name or email in the text field above and click search to find matching contacts.";
+        showSearchResults(searchResults);
+      }
+
+      function ajaxShowSearchResults(data){
+        showSearchResults(renderResults(data));
+      }
+
+      function renderResults(data){
+        results = "No results.<br><br>Type part of a name or email in the text field above and click search to find matching contacts.";
+        // loop through json data and render here
+        return results;
       }
 
     </script>
