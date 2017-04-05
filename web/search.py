@@ -20,6 +20,15 @@ def search_by_name(query, contact_data):
     return result
 
 
+def search_by_all_fields(query, contact_data):
+    result = []
+    for contact in contact_data:
+        if query in contact['name']\
+                or query in contact['city']:
+            result.append(contact)
+    return result
+
+
 def get_contact_data():
     global cached_contact_data
     if not cached_contact_data:
