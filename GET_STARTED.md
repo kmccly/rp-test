@@ -13,4 +13,10 @@
 
 ### Run the application
 
-- currently just a html file.
+The application runs on the Flask framework. To test it locally, in the command line:
+
+`python application.py`
+
+Remember to navigate to the directory containing the application.py.
+
+If you're running PyCharm, you should be able to run/debug from the editor.
