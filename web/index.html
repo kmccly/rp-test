@@ -1,6 +1,84 @@
 <!DOCTYPE html>
 <html>
-    <body>
-        <h1>Hello, world!</h1>
-    </body>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <style>
+      html, body{
+        margin:0;
+        padding:0;
+        width:100%;
+      }
+      form{
+        margin:none;
+        padding:none;
+      }
+      label{
+        visibility:hidden;
+        display:none;
+      }
+      input{
+        display: inline-block;
+        margin:10px;
+      }
+      .rp-container{
+        display:block;
+        margin:20px auto;
+      }
+      .rp-search{
+        display:block;
+      }
+      .rp-search__text{
+        width:300px;
+      }
+      .rp-search__button{
+        width:80px;
+      }
+      .rp-results{
+        display:block;
+        margin:10px;
+      }
+
+    </style>
+    <script>
+      function search(){
+        searchValue = $('#searchText').val();
+        showSearchResults(
+          getSesrchResults(searchValue)
+        );
+        return false;
+      }
+
+      function getSesrchResults(searchValue){
+        searchResults = "No results.<br>Type part of a name or email in the text field above and click search to find matching contacts.";
+        if(searchValue != ""){
+          searchResults = "Results for: '" + searchValue + "'<br>";
+        }
+        return searchResults;
+      }
+
+      function showSearchResults(searchResults){
+        $('#searchResults').html(searchResults);
+      }
+
+    </script>
+</head>
+<body>
+<div class="rp-container">
+    <div class="rp-search">
+        <form>
+            <label for="searchText">Search</label>
+            <input class="rp-search__text" type="text" placeholder="Who are you looking for?" name="searchText" id="searchText">
+            <input class="rp-search__button" type="submit" value="Search" onclick="search(); return false;">
+        </form>
+    </div>
+    <div id="searchResults" class="rp-results">
+        No results.
+        <br>
+        Type part of a name or email in the text field above and click search to find matching contacts.
+    </div>
+</div>
+</body>
 </html>
