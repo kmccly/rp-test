@@ -14,7 +14,7 @@ The aim was to keep the code 'clean' and limit the amount of comments in the cod
 
 **KEEP IT SIMPLE** -- Developed witht he mindset of "iterative improvement" and "simple as possible". This means no extensive code infrastructure, class structure, etc.
 
-Testing was tarted at the "functional" elements of the backend - namely the search. In a larger application I'd expect more extensive tests.
+Testing was targeted at the "functional" elements of the backend - namely the search. In a larger application I'd expect more extensive tests.
 
 ## Further improvements
 
