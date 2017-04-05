@@ -81,12 +81,16 @@
 
       function ajaxGetSearchResults(searchValue){
         ajaxShowSearchingMessage();
-        mockTheAjaxCall();
-        /* $.get( "/search/?q=" + searchValue, function( data ) {
-            ajaxShowSearchResults(data)
-        }).fail(function() {
+        //mockTheAjaxCall();
+        // TO MOCK: comment out the $.get(...) below and uncomment the function call above.
+        searchUrl = "/search/?q=" + searchValue;
+        $.ajax( { url: searchUrl })
+        .done( function(data){
+            ajaxShowSearchResults(data);
+        })
+        .fail(function() {
             ajaxShowError();
-        }); */
+        });
       }
 
       function mockTheAjaxCall(){
@@ -129,6 +133,7 @@
       }
 
       function renderResults(data){
+        data = JSON.parse(data);
         results = "No results.<br><br>Type part of a name or email in the text field above and click search to find matching contacts.";
         renderedResults = "";
         for(var i = 0; i < data.length; i++) {

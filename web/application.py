@@ -14,26 +14,6 @@ def search():
     return """
     [
     {
-        "city": "Westerlo", 
-        "name": "David Harrington", 
-        "country": "Spain", 
-        "company": "Mattis Corporation", 
-        "job_history": [
-            "Sibelius"
-        ], 
-        "email": "vehicula@et.com"
-    }, 
-    {
-        "city": "Osgoode", 
-        "name": "Madeson Hopkins", 
-        "country": "Tokelau", 
-        "company": "Vitae Erat LLC", 
-        "job_history": [
-            "Chami"
-        ], 
-        "email": "non.arcu@dui.com"
-    }, 
-    {
         "city": "Gelbressee", 
         "name": "Nero Acosta", 
         "country": "Panama", 
@@ -63,7 +43,7 @@ def search():
             "Cakewalk"
         ], 
         "email": "dolor.Fusce@consectetueradipiscingelit.net"
-    },] 
+    }] 
     """;
 
 @app.route("/hello/")
